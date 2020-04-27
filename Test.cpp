@@ -123,11 +123,14 @@ TEST_CASE("Test-complex *"){//10
     CHECK(solve(2*y-5*y == 10.0+1i) == -3.333-0.333i);
 }
 
-TEST_CASE("Test-complex /"){//7
+TEST_CASE("Test-complex /"){//10
 
     ComplexVariable y;
     CHECK(solve(y == (3.0+2i)/(3.0-2i)) == 0.385+0.923i);
     CHECK(solve(y == (1.0+1i)/(2.0+2i)) == 0.5);
+    CHECK(solve(y == (2.0+2i)/(2.0+2i)) == 1.0);
+    CHECK(solve(y == (4.0+4i)/(2.0+2i)) == 2.0);
+    CHECK(solve(y == (6.0+6i)/(2.0+2i)) == 3.0);
     CHECK(solve(y == (1.0+2.5i)/(3.0+2.5i)) == 0.607+0.328i);
     CHECK(solve(y == (-1.0-2.5i)/2.5i) == -1.0+0.4i);
     CHECK(solve(y == 1i/1i/1i/1i/1i) == -1i);
@@ -135,7 +138,7 @@ TEST_CASE("Test-complex /"){//7
     CHECK(solve(3*y == 2.0+1i) == -0.667+0.333i);
 }
 
-TEST_CASE("Test-complex ^"){//6
+TEST_CASE("Test-complex ^"){//7
 
     ComplexVariable y;
     CHECK(solve(y == (2.0+1i)^2) == 3.0+4.0i);
@@ -144,13 +147,16 @@ TEST_CASE("Test-complex ^"){//6
     CHECK(solve(y == (0.0+1i)^2) == -1.0+0i);
     CHECK(solve(y == 0.825i^2) == -0.681);
     CHECK_NOTHROW(solve(y^2 == 4) == 2.0+0i || solve(y^2 == 4) == -2.0+0i);
+    CHECK(solve(y^2 == -1) == 0.0+1i);
+ 
 }
 
-TEST_CASE("General tests"){//4
+TEST_CASE("General tests"){//5
 
     ComplexVariable y;
     CHECK(solve(y+5i == 2*y+3i) == 2i);
     CHECK(solve(2*y+5i == 3i) == -1i);
+    CHECK(solve(2*y+8i-(5^2)+3*y == 3i) == 5.0-1.0i);
     CHECK_NOTHROW(solve((y^2) + 2*y + 4 == 20 + 6*y/2 - y) == 4.0+0i || solve((y^2) + 2*y + 4 == 20 + 6*y/2 - y) == -4.0+0i);
     CHECK_NOTHROW(solve((y^2) == -16) == 0.0+4i || solve((y^2) == -16) == 4i || solve((y^2) == -16) == 0.0-4i || solve((y^2) == -16) == -4i);
 
