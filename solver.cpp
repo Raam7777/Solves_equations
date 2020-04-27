@@ -64,10 +64,20 @@ namespace solver{
         ComplexVariable nx;
         return nx;
     }
-    ComplexVariable& operator+(const ComplexVariable x, complex<double>){
+    
+    ComplexVariable& operator+(const ComplexVariable x, std::complex<double> y){
         ComplexVariable nx;
         return nx;
     }
+    ComplexVariable& operator+(const double x, complex<double> y){
+        ComplexVariable nx;
+        return nx;
+    }
+    ComplexVariable& operator+(std::complex<double> y, const double x){
+         ComplexVariable nx;
+        return nx;
+    }
+
     ComplexVariable& operator-(const ComplexVariable x, const double y){
         ComplexVariable nx;
         return nx;
@@ -75,6 +85,9 @@ namespace solver{
     ComplexVariable& operator-(const ComplexVariable x, const ComplexVariable y){
         ComplexVariable nx;
         return nx;
+    }
+    ComplexVariable& operator-(const ComplexVariable x, std::complex<double> y){
+
     }
     ComplexVariable& operator*(const double y, const ComplexVariable x){
         ComplexVariable nx;
@@ -93,6 +106,10 @@ namespace solver{
         return nx;
     }
     ComplexVariable& operator==(const ComplexVariable x, const ComplexVariable y){
+        ComplexVariable nx;
+        return nx;
+    }
+    ComplexVariable& operator==(const ComplexVariable x, std::complex<double> y){
         ComplexVariable nx;
         return nx;
     }

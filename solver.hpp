@@ -38,17 +38,30 @@ namespace solver{
 
         friend ComplexVariable& operator+(const ComplexVariable x, const ComplexVariable y);
         friend ComplexVariable& operator+(const ComplexVariable x, const double y);
-        friend ComplexVariable& operator+(const ComplexVariable x, std::complex<double>);
+        friend ComplexVariable& operator+(const ComplexVariable x, std::complex<double> y);
+        friend ComplexVariable& operator+(std::complex<double> y, const double x);
+        friend ComplexVariable& operator+(const double x, std::complex<double> y);
+
+
         friend ComplexVariable& operator-(const ComplexVariable x, const double y);
         friend ComplexVariable& operator-(const ComplexVariable x, const ComplexVariable y);
+        friend ComplexVariable& operator-(const ComplexVariable x, std::complex<double> y);
+
         friend ComplexVariable& operator*(const double y, const ComplexVariable x);
+
         friend ComplexVariable& operator/(const ComplexVariable x, const double y);
+
         friend ComplexVariable& operator^(const ComplexVariable x, const double y);
+        
         friend ComplexVariable& operator==(const ComplexVariable x, const double y);
         friend ComplexVariable& operator==(const ComplexVariable x, const ComplexVariable y);
+        friend ComplexVariable& operator==(const ComplexVariable x, std::complex<double> y);
+
+        
     };
 
     double solve(RealVariable x);
     std::complex<double> solve(ComplexVariable y);
+
 
 }
