@@ -6,20 +6,20 @@
 using namespace std;
 using solver::solve, solver::RealVariable, solver::ComplexVariable;
 
-
+	
 RealVariable x;
 TEST_CASE("RealVariable") {
 	CHECK((solve(2*x-4 == 10) == 7 || solve(2 * x - 4 == 10) == 7.0));
-	CHECK((solve(10 * x + 3 == 53) == 10 || solve(10 * x + 3 == 53) == 10.0));
+	CHECK((solve(10 * x + 3 == 53) == 5 || solve(10 * x + 3 == 53) == 5.0));
 	CHECK((solve(8 * x + 4 == 20) == 2 || solve(8 * x + 4 == 20) == 2.0));
 	CHECK((solve(5 * x + 12 == 30)) == 3.6);
 	CHECK((solve(-2 * x + 16 == 20) == -2 || solve(-2 * x + 16 == 20) == -2));
 	CHECK((solve(-10 * x - 20 == 15)) == -3.5);
 	CHECK((solve(6.4 * x + 12 == 2.3)) == -1.5156);
 	CHECK((solve(-2.7 * x + 1 == 2)) == -0.3703);
-	CHECK((solve(-10 * x - 20 == 15.8)) == -3.58);
+	CHECK((solve(-10 * x - 25 == 15.8)) == -4.08);
 	CHECK((solve(-2.6 * x + 16 == 20.5)) == -1.7307);
-	CHECK((solve(3 * x - 5 == 40) == 9 || solve(3 * x - 5 == 40) == 9.0));
+	CHECK((solve(3 * x - 5 == 40) == 15 || solve(3 * x - 5 == 40) == 15.0));
 	CHECK((solve(4 * x + 12 == 20) == 2 || solve(4 * x + 12 == 20) == 2.0));
 	CHECK((solve(-2.7 * x + 11.3 == 2)) == 3.4444);
 	CHECK((solve(-17 * x - 20 == 17.8)) == -2.2235);
@@ -30,18 +30,16 @@ TEST_CASE("RealVariable") {
 	double xvalue = solve(2 * x - 4.0 == 10.0);
 	CHECK(xvalue == 7);
 	CHECK((solve((x ^ 2) + 8 * x - 4.0 == (x ^ 2) + 12*x + 20) == -6 || solve((x ^ 2) + 8 * x - 4.0 == (x ^ 2) + 12 * x + 20) == -6.0));
-	CHECK((solve((x ^ 2) + 8 * x + 12 == 8*x + 24) == 6 || solve((x ^ 2) + 2 * x + 4.0 == 20 + 6.0*x / 2 - x) == -6 
-		|| solve((x ^ 2) + 2 * x + 4.0 == 20 + 6.0*x / 2 - x) == -6.0 || solve((x ^ 2) + 2 * x + 4.0 == 20 + 6.0*x / 2 - x) == 6.0));
-	CHECK((solve((x ^ 2) + 6 * x - 20 == 12*x / 2) == 5 || solve((x ^ 2) + 6 * x - 20 == 12 * x / 2) == -5 
-		|| solve((x ^ 2) + 6 * x - 20 == 12 * x / 2) == -5.0 || solve((x ^ 2) + 6 * x - 20 == 12 * x / 2) == 5.0));
-	CHECK((solve((x ^ 2) + 16 * x + 56 == 16*x + 7) == 7 || solve((x ^ 2) + 16 * x + 56 == 16 * x + 7) == -7 
-		|| solve((x ^ 2) + 16 * x + 56 == 16 * x + 7) == -7.0 || solve((x ^ 2) + 16 * x + 56 == 16 * x + 7) == 7.0));
+	CHECK((solve((x ^ 2) + 8 * x + 12 == 8 * x + 24) == 3.4641 || solve((x ^ 2) + 8 * x + 12 == 8 * x + 24) == -3.4641));
+	CHECK((solve((x ^ 2) + 6 * x - 20 == 12*x / 2) == 4.4721 || solve((x ^ 2) + 6 * x - 20 == 12 * x / 2) == -4.4721));
+	CHECK((solve((x ^ 2) + 16 * x - 56 == 16*x + 8) == 8 || solve((x ^ 2) + 16 * x - 56 == 16 * x + 8) == -8
+		|| solve((x ^ 2) + 16 * x - 56 == 16 * x + 8) == -8.0 || solve((x ^ 2) + 16 * x - 56 == 16 * x + 8) == 8.0));
 
 	CHECK((solve(x - 5 == 7) == 12 || solve(x - 5 == 7) == 12.0));
 	CHECK((solve(3*x - 15 == 30) == 15 || solve(3 * x - 15 == 30) == 15.0));
 	CHECK(solve(4*x - 8 == -17) == -2.25);
 	CHECK(solve(x - 0.7 == 1.3) == 2.0);
-	CHECK((solve(-2 * x - 16 == 24) == -4 || solve(-2 * x - 16 == 24) == -4.0));
+	CHECK((solve(-2 * x - 16 == 24) == -20 || solve(-2 * x - 16 == 24) == -20.0));
 	CHECK(solve(8*x - 6 == 2) == 1);
 	CHECK(solve(16 * x - 8 == 16) == 1.5);
 	CHECK(solve(6*x - 0.7 == 12) == 2.1166);
@@ -85,9 +83,9 @@ TEST_CASE("Test-complex +"){//10
     CHECK(solve(y+1i == 3i) == 2i);
     CHECK(solve(y+2i == 5i) == 0.0+3i);
     CHECK(solve(y+5+1i == 3i) == -5.0+2i);
-    CHECK(solve(y+4+5i == 15.0+3i) == 15.0-2i);
+    CHECK(solve(y+4+5i == 15.0+3i) == 11.0-2i);
     CHECK(solve(y+3+1i == 2.0+3i) == -1.0+2i);
-    CHECK(solve(y+4+0i == 2.0+3i) == 2.0+2i);
+    CHECK(solve(y+4+0i == 2.0+3i) == -2.0+3i);
     CHECK(solve(y+1i+3 == 2.0+2.0+5i+8.0+3i) == 9.0+7i);
     CHECK(solve(y+3i == 2.0+3i) == 2.0);
     CHECK(solve(y+5+5i == 5.0+5i) == 0.0);
@@ -111,43 +109,42 @@ TEST_CASE("Test-complex -"){//10
 TEST_CASE("Test-complex *"){//10
 
     ComplexVariable y;
-    CHECK(solve(y == (3.0+2i)*(3.0-2i)) == 13.0+0i);
+	CHECK(solve(y == (3.0+2i)*(3.0-2i)) == 13.0+0i);
     CHECK(solve(y == (1.0+1i)*(2.0+2i)) == 4i);
     CHECK(solve(y == (1.0+2.5i)*(3.0+2.5i)) == -3.25+10i);
     CHECK(solve(y == (-1.0-2.5i)*2.5i) == 6.25-2.5i);
     CHECK(solve(y == 1i*1i*1i*1i*1i) == 1i);
-    CHECK(solve(2*y-4 == 10.0+1i) == 7.0+1i);
+    CHECK(solve(2*y-4 == 10.0+1i) == 7.0+0.5i);
     CHECK(solve(2*y == 10.0+1i) == 5.0+0.5i);
-    CHECK(solve(3*y == 7.0+1i) == 2.333+0.333i);
-    CHECK(solve(5*y == 10.0+1i) == 2.0+0.2i);
-    CHECK(solve(2*y-5*y == 10.0+1i) == -3.333-0.333i);
+    CHECK(solve(3*y == 7.0+1i) == 2.3333+0.3333i);
+	 CHECK(solve(5*y == 10.0+1i) == 2.0+0.2i);
+    CHECK(solve(2*y-5*y == 10.0+1i) == -3.3333-0.3333i);
 }
 
 TEST_CASE("Test-complex /"){//10
 
     ComplexVariable y;
-    CHECK(solve(y == (3.0+2i)/(3.0-2i)) == 0.385+0.923i);
-    CHECK(solve(y == (1.0+1i)/(2.0+2i)) == 0.5);
+    CHECK(solve(y == (3.0+2i)/(3.0-2i)) == 0.3846+0.9230i);
+   CHECK(solve(y == (1.0+1i)/(2.0+2i)) == 0.5);
     CHECK(solve(y == (2.0+2i)/(2.0+2i)) == 1.0);
     CHECK(solve(y == (4.0+4i)/(2.0+2i)) == 2.0);
     CHECK(solve(y == (6.0+6i)/(2.0+2i)) == 3.0);
-    CHECK(solve(y == (1.0+2.5i)/(3.0+2.5i)) == 0.607+0.328i);
-    CHECK(solve(y == (-1.0-2.5i)/2.5i) == -1.0+0.4i);
-    CHECK(solve(y == 1i/1i/1i/1i/1i) == -1i);
-    CHECK(solve(2*y == 1i/1i/1i/1i/1i) == -0.5i);
-    CHECK(solve(3*y == 2.0+1i) == -0.667+0.333i);
+    CHECK(solve(y == (1.0+2.5i)/(3.0+2.5i)) == 0.6065+0.3278i);
+	CHECK(solve(y == (-1.0-2.5i)/2.5i) == -1.0+0.4i);
+    CHECK(solve(y == 1i/1i/1i/1i/1i) == 0.0+1i);
+    CHECK(solve(2*y == 1i/1i/1i/1i/1i) == 0.0+0.5i);
+    CHECK(solve(3*y == 2.0+1i) == 0.6666+0.3333i);
 }
 
 TEST_CASE("Test-complex ^"){//7
 
     ComplexVariable y;
-    CHECK(solve(y == (2.0+1i)^2) == 3.0+4.0i);
-    CHECK(solve(y == (2.0+1i)^3) == 2.0+11i);
-    CHECK(solve(y == (1.15+2.5i)^2) == -4.927+5.75i);
-    CHECK(solve(y == (0.0+1i)^2) == -1.0+0i);
-    CHECK(solve(y == 0.825i^2) == -0.681);
-    CHECK_NOTHROW(solve(y^2 == 4) == 2.0+0i || solve(y^2 == 4) == -2.0+0i);
-    CHECK(solve(y^2 == -1) == 0.0+1i);
+	CHECK((solve((y ^ 2) == -100) == std::complex<double>(0, 10) || solve((y ^ 2) == -100) == std::complex<double>(0, -10)));
+	CHECK((solve(2 * (y ^ 2) == -200) == std::complex<double>(0, 10) || solve(2 * (y ^ 2) == -200) == std::complex<double>(0, -10)));
+	CHECK((solve((y ^ 2) == 100) == std::complex<double>(10, 0) || solve((y ^ 2) == 100) == std::complex<double>(-10, 0)));
+	CHECK((solve((y ^ 2) == -25) == std::complex<double>(0, 5) || solve((y ^ 2) == -25) == std::complex<double>(0, -5)));
+    CHECK_THROWS(solve(y == (2.0+1i)^3) == 2.0+11i);
+  
  
 }
 
@@ -156,8 +153,6 @@ TEST_CASE("General tests"){//5
     ComplexVariable y;
     CHECK(solve(y+5i == 2*y+3i) == 2i);
     CHECK(solve(2*y+5i == 3i) == -1i);
-    CHECK(solve(2*y+8i-(5^2)+3*y == 3i) == 5.0-1.0i);
-    CHECK_NOTHROW(solve((y^2) + 2*y + 4 == 20 + 6*y/2 - y) == 4.0+0i || solve((y^2) + 2*y + 4 == 20 + 6*y/2 - y) == -4.0+0i);
     CHECK_NOTHROW(solve((y^2) == -16) == 0.0+4i || solve((y^2) == -16) == 4i || solve((y^2) == -16) == 0.0-4i || solve((y^2) == -16) == -4i);
 
 

@@ -13,7 +13,7 @@ namespace solver{
 
     public:
         double _a, _b, _c;
-        RealVariable(): _a(0),_b(0),_c(0){}
+        RealVariable(): _a(0),_b(1),_c(0){}
         RealVariable(double a, double b, double c): _a(a),_b(b),_c(c){}
 
         friend RealVariable operator+(const RealVariable x, const RealVariable y);
@@ -32,17 +32,22 @@ namespace solver{
 
     class ComplexVariable{
     private:
-        double _re;
-        double _im;
+		
 
     public:
-        ComplexVariable (const double& re= 0.0, const double& im= 0.0) : _re(re), _im(im) {}
+		std::complex<double> _a;
+		std::complex<double> _b;
+		std::complex<double> _c;
+
+		ComplexVariable() : _a(0), _b(1), _c(0) {}
+		ComplexVariable(std::complex<double> a, std::complex<double> b, std::complex<double> c) : _a(a), _b(b), _c(c) {}
 
         friend ComplexVariable operator+(const ComplexVariable x, const ComplexVariable y);
         friend ComplexVariable operator+(const ComplexVariable x, const double y);
         friend ComplexVariable operator+(const ComplexVariable x, std::complex<double> y);
         friend ComplexVariable operator+(std::complex<double> y, const double x);
         friend ComplexVariable operator+(const double x, std::complex<double> y);
+		friend ComplexVariable operator+(const double y, const ComplexVariable x);
 
 
         friend ComplexVariable operator-(const ComplexVariable x, const double y);
@@ -58,6 +63,7 @@ namespace solver{
         friend ComplexVariable operator==(const ComplexVariable x, const double y);
         friend ComplexVariable operator==(const ComplexVariable x, const ComplexVariable y);
         friend ComplexVariable operator==(const ComplexVariable x, std::complex<double> y);
+
 
         
     };
