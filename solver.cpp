@@ -111,9 +111,11 @@ namespace solver{
     ComplexVariable operator+(const ComplexVariable x, const ComplexVariable y){
         return ComplexVariable(x._a + y._a, x._b + y._b, x._c + y._c);
     }
+
     ComplexVariable operator+(const ComplexVariable x, const double y){
 		return ComplexVariable(x._a, x._b, x._c + y);
     }
+
 	ComplexVariable operator+(const double y, const ComplexVariable x) {
 		return ComplexVariable(x._a, x._b, x._c + y);
 	}
